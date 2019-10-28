@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoListController: UITableViewController {
+class DiaryListController: UITableViewController {
 
     let managedObjectContext = CoreDataStack().managedObjectContext
     

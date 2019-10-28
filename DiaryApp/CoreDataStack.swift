@@ -17,7 +17,7 @@ class CoreDataStack {
     }()
     
     private lazy var persistentContainer: NSPersistentContainer  = {
-        let container = NSPersistentContainer (name: "InsertContainerNameHere")
+        let container = NSPersistentContainer (name: "DiaryList")
         container.loadPersistentStores() { storeDescription, error in
             if let error = error as NSError? {
                 fatalError("Error:  Unknown type: \(error), \(error.userInfo)")

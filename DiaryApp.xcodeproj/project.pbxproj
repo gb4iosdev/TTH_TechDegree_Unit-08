@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */; };
+		866140532366FAD200BACF35 /* AddItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866140522366FAD200BACF35 /* AddItemController.swift */; };
 		86719ACC2364684D00030EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86719ACB2364684D00030EA3 /* AppDelegate.swift */; };
-		86719ACE2364684D00030EA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86719ACD2364684D00030EA3 /* ViewController.swift */; };
 		86719AD12364684D00030EA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86719ACF2364684D00030EA3 /* Main.storyboard */; };
 		86719AD32364684F00030EA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD22364684F00030EA3 /* Assets.xcassets */; };
 		86719AD62364684F00030EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD42364684F00030EA3 /* LaunchScreen.storyboard */; };
@@ -18,9 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		866140502366F82B00BACF35 /* DiaryList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiaryList.xcdatamodel; sourceTree = "<group>"; };
+		866140522366FAD200BACF35 /* AddItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemController.swift; sourceTree = "<group>"; };
 		86719AC82364684D00030EA3 /* DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86719ACB2364684D00030EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		86719ACD2364684D00030EA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86719AD02364684D00030EA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86719AD22364684F00030EA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86719AD52364684F00030EA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,6 +46,7 @@
 		86719ABF2364684D00030EA3 = {
 			isa = PBXGroup;
 			children = (
+				866140522366FAD200BACF35 /* AddItemController.swift */,
 				86719ACA2364684D00030EA3 /* DiaryApp */,
 				86719AC92364684D00030EA3 /* Products */,
 			);
@@ -61,8 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				86719ACB2364684D00030EA3 /* AppDelegate.swift */,
-				86719ACD2364684D00030EA3 /* ViewController.swift */,
 				86DE327B236468E2008C2B23 /* CoreDataStack.swift */,
+				8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */,
 				86DE327D2364695C008C2B23 /* TodoListController.swift */,
 				86DE327F236469C2008C2B23 /* DataSource.swift */,
 				86719ACF2364684D00030EA3 /* Main.storyboard */,
@@ -144,9 +147,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				866140532366FAD200BACF35 /* AddItemController.swift in Sources */,
 				86DE327C236468E2008C2B23 /* CoreDataStack.swift in Sources */,
+				866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */,
 				86DE327E2364695C008C2B23 /* TodoListController.swift in Sources */,
-				86719ACE2364684D00030EA3 /* ViewController.swift in Sources */,
 				86DE3280236469C2008C2B23 /* DataSource.swift in Sources */,
 				86719ACC2364684D00030EA3 /* AppDelegate.swift in Sources */,
 			);
@@ -348,6 +352,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				866140502366F82B00BACF35 /* DiaryList.xcdatamodel */,
+			);
+			currentVersion = 866140502366F82B00BACF35 /* DiaryList.xcdatamodel */;
+			path = DiaryList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 86719AC02364684D00030EA3 /* Project object */;
 }
