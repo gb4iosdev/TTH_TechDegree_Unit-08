@@ -25,5 +25,18 @@ class CoreDataStack {
         }
         return container
     }()
+    
+}
+
+extension NSManagedObjectContext {
+    func saveChanges() {
+        if self.hasChanges {
+            do {
+                try save()
+            } catch {
+                fatalError("Error: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 

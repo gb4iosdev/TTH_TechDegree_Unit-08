@@ -13,8 +13,12 @@
 		86719AD12364684D00030EA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86719ACF2364684D00030EA3 /* Main.storyboard */; };
 		86719AD32364684F00030EA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD22364684F00030EA3 /* Assets.xcassets */; };
 		86719AD62364684F00030EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD42364684F00030EA3 /* LaunchScreen.storyboard */; };
+		86B7FF422367ACE600276EB9 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7FF402367ACE600276EB9 /* Item+CoreDataClass.swift */; };
+		86B7FF432367ACE600276EB9 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7FF412367ACE600276EB9 /* Item+CoreDataProperties.swift */; };
+		86B7FF452367B11C00276EB9 /* DiaryFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7FF442367B11C00276EB9 /* DiaryFetchedResultsController.swift */; };
+		86B7FF472367B33A00276EB9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7FF462367B33A00276EB9 /* DetailViewController.swift */; };
 		86DE327C236468E2008C2B23 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE327B236468E2008C2B23 /* CoreDataStack.swift */; };
-		86DE327E2364695C008C2B23 /* TodoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE327D2364695C008C2B23 /* TodoListController.swift */; };
+		86DE327E2364695C008C2B23 /* DiaryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE327D2364695C008C2B23 /* DiaryListController.swift */; };
 		86DE3280236469C2008C2B23 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE327F236469C2008C2B23 /* DataSource.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,8 +31,12 @@
 		86719AD22364684F00030EA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86719AD52364684F00030EA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86719AD72364684F00030EA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86B7FF402367ACE600276EB9 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		86B7FF412367ACE600276EB9 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		86B7FF442367B11C00276EB9 /* DiaryFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryFetchedResultsController.swift; sourceTree = "<group>"; };
+		86B7FF462367B33A00276EB9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		86DE327B236468E2008C2B23 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		86DE327D2364695C008C2B23 /* TodoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListController.swift; sourceTree = "<group>"; };
+		86DE327D2364695C008C2B23 /* DiaryListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListController.swift; sourceTree = "<group>"; };
 		86DE327F236469C2008C2B23 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,7 +54,8 @@
 		86719ABF2364684D00030EA3 = {
 			isa = PBXGroup;
 			children = (
-				866140522366FAD200BACF35 /* AddItemController.swift */,
+				86B7FF402367ACE600276EB9 /* Item+CoreDataClass.swift */,
+				86B7FF412367ACE600276EB9 /* Item+CoreDataProperties.swift */,
 				86719ACA2364684D00030EA3 /* DiaryApp */,
 				86719AC92364684D00030EA3 /* Products */,
 			);
@@ -65,10 +74,13 @@
 			children = (
 				86719ACB2364684D00030EA3 /* AppDelegate.swift */,
 				86DE327B236468E2008C2B23 /* CoreDataStack.swift */,
+				86DE327D2364695C008C2B23 /* DiaryListController.swift */,
+				86B7FF442367B11C00276EB9 /* DiaryFetchedResultsController.swift */,
+				866140522366FAD200BACF35 /* AddItemController.swift */,
 				8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */,
-				86DE327D2364695C008C2B23 /* TodoListController.swift */,
 				86DE327F236469C2008C2B23 /* DataSource.swift */,
 				86719ACF2364684D00030EA3 /* Main.storyboard */,
+				86B7FF462367B33A00276EB9 /* DetailViewController.swift */,
 				86719AD22364684F00030EA3 /* Assets.xcassets */,
 				86719AD42364684F00030EA3 /* LaunchScreen.storyboard */,
 				86719AD72364684F00030EA3 /* Info.plist */,
@@ -149,10 +161,14 @@
 			files = (
 				866140532366FAD200BACF35 /* AddItemController.swift in Sources */,
 				86DE327C236468E2008C2B23 /* CoreDataStack.swift in Sources */,
+				86B7FF432367ACE600276EB9 /* Item+CoreDataProperties.swift in Sources */,
 				866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */,
-				86DE327E2364695C008C2B23 /* TodoListController.swift in Sources */,
+				86DE327E2364695C008C2B23 /* DiaryListController.swift in Sources */,
+				86B7FF452367B11C00276EB9 /* DiaryFetchedResultsController.swift in Sources */,
 				86DE3280236469C2008C2B23 /* DataSource.swift in Sources */,
+				86B7FF472367B33A00276EB9 /* DetailViewController.swift in Sources */,
 				86719ACC2364684D00030EA3 /* AppDelegate.swift in Sources */,
+				86B7FF422367ACE600276EB9 /* Item+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

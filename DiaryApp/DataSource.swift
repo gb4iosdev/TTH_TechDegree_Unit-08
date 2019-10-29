@@ -15,8 +15,8 @@ class DataSource: NSObject, UITableViewDataSource {
     private let tableView: UITableView
     private let context: NSManagedObjectContext
     
-    lazy var fetchedResultsController: TodoFetchResultsController = {
-        return TodoFetchResultsController(managedObjectContext: self.context, tableView: self.tableView)
+    lazy var fetchedResultsController: DiaryFetchedResultsController = {
+        return DiaryFetchedResultsController(managedObjectContext: self.context, tableView: self.tableView)
     }()
     
     init(tableView: UITableView, context: NSManagedObjectContext) {
@@ -24,8 +24,8 @@ class DataSource: NSObject, UITableViewDataSource {
     self.context = context
     }
     
-    func object(at indexPath: IndexPath) {
-        return fetchedResultsController.sections?.count ?? 0
+    func object(at indexPath: IndexPath) -> Item {
+        return fetchedResultsController.object(at: indexPath)
     }
     
     //MARK: - Table View DataSource methods
@@ -45,14 +45,14 @@ class DataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let item = fetchedResultsController.objects(at: indexPath)
+        let item = fetchedResultsController.object(at: indexPath)
         context.delete(item)
-        context.saveChanges
+        context.saveChanges()
     }
     
     private func configuredCell(_ cell: UITableViewCell, at indexPath: IndexPath) -> UITableViewCell {
         let item = fetchedResultsController.object(at: indexPath)
-        cell.textlabel?.text = item.text
+        cell.textLabel?.text = item.text
         return cell
     }
     

@@ -1,5 +1,5 @@
 //
-//  TodoListController.swift
+//  DiaryListController.swift
 //  DiaryApp
 //
 //  Created by Gavin Butler on 26-10-2019.
@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DiaryListController: UITableViewController {
 
@@ -15,6 +16,11 @@ class DiaryListController: UITableViewController {
     lazy var dataSource: DataSource = {
         return DataSource(tableView: self.tableView, context: self.managedObjectContext)
     }()
+    
+    lazy var fetchedResultsController: DiaryFetchedResultsController = {
+        return DiaryFetchedResultsController(managedObjectContext: self.managedObjectContext, tableView: self.tableView)
+    }()
+    
     
     override func viewDidLoad() {
         
@@ -32,7 +38,8 @@ class DiaryListController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newItem",
         let navigationController = segue.destination as? UINavigationController,
-        let addTaskController = navigationController.topViewController as? AddTaskController {
+        let addTaskController = navigationController.topViewController as? AddItemController {
+            print("This Context: \(self.managedObjectContext.description)")
             addTaskController.managedObjectContext = self.managedObjectContext
         } else if segue.identifier == "showDetail" {
             guard let detailViewController = segue.destination as? DetailViewController,
