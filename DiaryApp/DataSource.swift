@@ -20,8 +20,8 @@ class DataSource: NSObject, UITableViewDataSource {
     }()
     
     init(tableView: UITableView, context: NSManagedObjectContext) {
-    self.tableView = tableView
-    self.context = context
+        self.tableView = tableView
+        self.context = context
     }
     
     func object(at indexPath: IndexPath) -> Item {

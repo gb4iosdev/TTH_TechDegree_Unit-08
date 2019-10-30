@@ -51,11 +51,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		86719ABF2364684D00030EA3 = {
+		866602C723684B00003B12FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				86DE327D2364695C008C2B23 /* DiaryListController.swift */,
+				866140522366FAD200BACF35 /* AddItemController.swift */,
+				86B7FF462367B33A00276EB9 /* DetailViewController.swift */,
+				86B7FF442367B11C00276EB9 /* DiaryFetchedResultsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		866602C823684BF3003B12FA /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				86B7FF402367ACE600276EB9 /* Item+CoreDataClass.swift */,
 				86B7FF412367ACE600276EB9 /* Item+CoreDataProperties.swift */,
+				86DE327B236468E2008C2B23 /* CoreDataStack.swift */,
+				8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		86719ABF2364684D00030EA3 = {
+			isa = PBXGroup;
+			children = (
 				86719ACA2364684D00030EA3 /* DiaryApp */,
 				86719AC92364684D00030EA3 /* Products */,
 			);
@@ -73,14 +93,10 @@
 			isa = PBXGroup;
 			children = (
 				86719ACB2364684D00030EA3 /* AppDelegate.swift */,
-				86DE327B236468E2008C2B23 /* CoreDataStack.swift */,
-				86DE327D2364695C008C2B23 /* DiaryListController.swift */,
-				86B7FF442367B11C00276EB9 /* DiaryFetchedResultsController.swift */,
-				866140522366FAD200BACF35 /* AddItemController.swift */,
-				8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */,
-				86DE327F236469C2008C2B23 /* DataSource.swift */,
 				86719ACF2364684D00030EA3 /* Main.storyboard */,
-				86B7FF462367B33A00276EB9 /* DetailViewController.swift */,
+				866602C723684B00003B12FA /* Controller */,
+				866602C823684BF3003B12FA /* Model */,
+				86DE327F236469C2008C2B23 /* DataSource.swift */,
 				86719AD22364684F00030EA3 /* Assets.xcassets */,
 				86719AD42364684F00030EA3 /* LaunchScreen.storyboard */,
 				86719AD72364684F00030EA3 /* Info.plist */,

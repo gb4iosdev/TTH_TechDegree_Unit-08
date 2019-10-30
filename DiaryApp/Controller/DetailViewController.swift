@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         if let item = item, let newText = detailTextField.text {
+            item.text = newText
             context.saveChanges()
             navigationController?.popViewController(animated: true)
         }
