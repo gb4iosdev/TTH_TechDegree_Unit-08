@@ -21,12 +21,21 @@ class DiaryListController: UITableViewController {
         return DiaryFetchedResultsController(managedObjectContext: self.managedObjectContext, tableView: self.tableView)
     }()
     
+    lazy var headerView: UITableViewCell = {
+        let cell = Bundle.main.loadNibNamed("HeaderCell", owner: self, options: nil)?.first as! HeaderCell
+        cell.dateLabel.text = Date().formattedMmmDDYYYY()
+        return cell
+    }()
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         tableView.dataSource = dataSource
+        
+        configureUI()
+        
     }
     
     //MARK: - Table View Delegate Methods:
@@ -52,4 +61,20 @@ class DiaryListController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        //return ListHeader.view(withWidth: tableView.frame.width)
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(70)
+    }
+    
+}
+
+//MARK: - Helper Methods
+extension DiaryListController {
+    func configureUI() {
+        self.title = Date().formattedMmmDDYYYY()
+    }
 }

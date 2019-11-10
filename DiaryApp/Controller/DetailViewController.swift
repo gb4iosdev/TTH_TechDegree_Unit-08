@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @IBAction func savePressed(_ sender: UIBarButtonItem) {
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
         if let item = item, let newText = detailTextField.text {
             item.text = newText
             context.saveChanges()
