@@ -1,21 +1,18 @@
 //
-//  DetailViewController.swift
-//  DiaryApp
+//  ViewController.swift
+//  ImagePickerExample
 //
-//  Created by Gavin Butler on 28-10-2019.
-//  Copyright © 2019 Gavin Butler. All rights reserved.
+//  Created by Dennis Parussini on 29.10.19.
+//  Copyright © 2019 Dennis Parussini. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import CoreData
 
-class DetailViewController: UIViewController {
+final class PhotoPickerController: UIViewController {
     
-    var item: Item?
-    var context: NSManagedObjectContext!
+    @IBOutlet weak var imageView: UIImageView!
     
-    //Set up the image picker. Either showing the camera or the photo library
+    //Set up the image picker. In this simple example we're either showing the camera or the photo library, but in a real world app you definitely want the user to be able to choose. Also, the camera doesn't work in simulators.
     var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController()
         
@@ -28,50 +25,24 @@ class DetailViewController: UIViewController {
         return picker
     }()
     
-    
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var photoImageView: UIImageView!
-    
-    
     override func viewDidLoad() {
-        if let item = item {
-            titleTextField.text = item.text
-        }
+        super.viewDidLoad()
         
         //Always make self the delegate of the image picker.
         imagePicker.delegate = self
     }
-    
-    @IBAction func addPhotoButtonPressed(_ sender: UIButton) {
+
+    @IBAction func showImagePickerButtonTapped(_ sender: UIButton) {
+        //Present the image picker like any other view(controller)
         present(imagePicker, animated: true)
-        
-    }
-    
-    
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
-        if let item = item, let newText = titleTextField.text {
-            item.text = newText
-            context.saveChanges()
-            navigationController?.popViewController(animated: true)
-        }
-    }
-    
-    @IBAction func deletePressed(_ sender: UIButton) {
-        if let item = item {
-            context.delete(item)
-            context.saveChanges()
-            navigationController?.popViewController(animated: true)
-        }
     }
 }
 
-//MARK: - Photo Picker
-
 //Need to conform to UINavigationControllerDelegate
-extension DetailViewController: UINavigationControllerDelegate {}
+extension PhotoPickerController: UINavigationControllerDelegate {}
 
 //Conform to UIImagePickerControllerDelegate
-extension DetailViewController: UIImagePickerControllerDelegate {
+extension PhotoPickerController: UIImagePickerControllerDelegate {
     //This delegate gets called when you tap the "Cancel" button in the image picker. Just dismiss the image picker then.
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
@@ -85,7 +56,7 @@ extension DetailViewController: UIImagePickerControllerDelegate {
         
         //Always dismiss the image picker when you're done with it. In this case I assign the image to the image view, but you can also just assign it to a property, save it in Core Data or whatever you need to do with it. This also means you can first assign the image to something and then dismiss the image picker.
         picker.dismiss(animated: true) {
-            self.photoImageView.image = image
+            self.imageView.image = image
         }
     }
 }
