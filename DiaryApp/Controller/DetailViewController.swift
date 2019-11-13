@@ -34,8 +34,16 @@ class DetailViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
+        //Load the item if it exists
         if let item = item {
             titleTextField.text = item.text
+            
+            //Load the photo if it exists
+            if let _ = item.imageData {
+                let image = UIImage(data: item.imageData! as Data)
+                self.photoImageView.image = image
+            }
         }
         
         //Always make self the delegate of the image picker.
@@ -86,6 +94,8 @@ extension DetailViewController: UIImagePickerControllerDelegate {
         //Always dismiss the image picker when you're done with it. In this case I assign the image to the image view, but you can also just assign it to a property, save it in Core Data or whatever you need to do with it. This also means you can first assign the image to something and then dismiss the image picker.
         picker.dismiss(animated: true) {
             self.photoImageView.image = image
+            self.item?.imageData = image.jpegData(compressionQuality: 1.0)! as NSData
+            self.context.saveChanges()
         }
     }
 }

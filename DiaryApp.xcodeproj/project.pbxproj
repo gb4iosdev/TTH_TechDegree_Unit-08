@@ -14,7 +14,6 @@
 		86719AD32364684F00030EA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD22364684F00030EA3 /* Assets.xcassets */; };
 		86719AD62364684F00030EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD42364684F00030EA3 /* LaunchScreen.storyboard */; };
 		869B52F823774DD10092201A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B52F723774DD10092201A /* Date.swift */; };
-		869B52FA237751BC0092201A /* ListHeader<remove>.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B52F9237751BC0092201A /* ListHeader<remove>.swift */; };
 		869B52FD23778C5B0092201A /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B52FB23778C5B0092201A /* HeaderCell.swift */; };
 		869B52FE23778C5B0092201A /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869B52FC23778C5B0092201A /* HeaderCell.xib */; };
 		86A9533C2378B5D300781BED /* PhotoPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9533B2378B5D300781BED /* PhotoPickerController.swift */; };
@@ -37,7 +36,6 @@
 		86719AD52364684F00030EA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86719AD72364684F00030EA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		869B52F723774DD10092201A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		869B52F9237751BC0092201A /* ListHeader<remove>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListHeader<remove>.swift"; sourceTree = "<group>"; };
 		869B52FB23778C5B0092201A /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		869B52FC23778C5B0092201A /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
 		86A9533B2378B5D300781BED /* PhotoPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerController.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				86719ACF2364684D00030EA3 /* Main.storyboard */,
-				869B52F9237751BC0092201A /* ListHeader<remove>.swift */,
 				869B52FB23778C5B0092201A /* HeaderCell.swift */,
 				869B52FC23778C5B0092201A /* HeaderCell.xib */,
 			);
@@ -229,7 +226,6 @@
 				866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */,
 				86A9533C2378B5D300781BED /* PhotoPickerController.swift in Sources */,
 				869B52FD23778C5B0092201A /* HeaderCell.swift in Sources */,
-				869B52FA237751BC0092201A /* ListHeader<remove>.swift in Sources */,
 				86DE327E2364695C008C2B23 /* DiaryListController.swift in Sources */,
 				86B7FF452367B11C00276EB9 /* DiaryFetchedResultsController.swift in Sources */,
 				86DE3280236469C2008C2B23 /* DataSource.swift in Sources */,
