@@ -204,8 +204,12 @@
                                             <constraint firstAttribute="height" constant="100" id="TzY-8w-Pz4"/>
                                         </constraints>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gXO-Ap-0QD">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gXO-Ap-0QD">
                                         <rect key="frame" x="203" y="0.0" width="195" height="100"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="NVM-xb-3fG" appends="YES" id="NEs-oy-Kh7"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -316,13 +320,79 @@
                     </view>
                     <navigationItem key="navigationItem" id="R41-xR-GcN"/>
                     <connections>
+                        <outlet property="detailTextField" destination="jO2-eu-yC2" id="5nJ-JS-om7"/>
                         <outlet property="photoImageView" destination="gXO-Ap-0QD" id="aIt-5D-h74"/>
                         <outlet property="titleTextField" destination="jU7-tX-fuM" id="UZu-Ye-PBb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Woc-tB-m2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="NVM-xb-3fG">
+                    <connections>
+                        <segue destination="HGr-ui-gh9" kind="show" identifier="showPhotoCollection" id="QuR-ek-i1K"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3539.130434782609" y="870.53571428571422"/>
+        </scene>
+        <!--Photo Collection Controller-->
+        <scene sceneID="R8q-Mg-uqP">
+            <objects>
+                <viewController id="HGr-ui-gh9" customClass="PhotoCollectionController" customModule="DiaryApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SIa-jN-onL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9sG-49-tnv">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="SHQ-3q-i5c">
+                                    <size key="itemSize" width="110" height="110"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="zu9-zY-xzp" customClass="PhotoCell" customModule="DiaryApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="20" width="110" height="110"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vw4-Td-eFP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="vw4-Td-eFP" secondAttribute="bottom" id="Bkz-zA-vfT"/>
+                                            <constraint firstAttribute="trailing" secondItem="vw4-Td-eFP" secondAttribute="trailing" id="ZIl-hc-lzf"/>
+                                            <constraint firstItem="vw4-Td-eFP" firstAttribute="leading" secondItem="zu9-zY-xzp" secondAttribute="leading" id="hX5-0T-cS1"/>
+                                            <constraint firstItem="vw4-Td-eFP" firstAttribute="top" secondItem="zu9-zY-xzp" secondAttribute="top" id="sGp-hB-NP2"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="vw4-Td-eFP" id="0tM-0F-CjI"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9sG-49-tnv" firstAttribute="top" secondItem="Bpj-BG-z3N" secondAttribute="top" id="3DA-bb-061"/>
+                            <constraint firstItem="9sG-49-tnv" firstAttribute="leading" secondItem="Bpj-BG-z3N" secondAttribute="leading" id="gyb-t0-20u"/>
+                            <constraint firstItem="Bpj-BG-z3N" firstAttribute="bottom" secondItem="9sG-49-tnv" secondAttribute="bottom" id="sxe-gp-YCG"/>
+                            <constraint firstItem="Bpj-BG-z3N" firstAttribute="trailing" secondItem="9sG-49-tnv" secondAttribute="trailing" id="zw4-Wb-uLa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bpj-BG-z3N"/>
+                    </view>
+                    <connections>
+                        <outlet property="photoCollectionView" destination="9sG-49-tnv" id="iFs-j2-tHC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLG-87-KOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4606" y="871"/>
         </scene>
     </scenes>
 </document>

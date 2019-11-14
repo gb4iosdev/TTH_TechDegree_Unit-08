@@ -30,6 +30,7 @@ class DetailViewController: UIViewController {
     
     
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var detailTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     
     
@@ -38,6 +39,7 @@ class DetailViewController: UIViewController {
         //Load the item if it exists
         if let item = item {
             titleTextField.text = item.text
+            detailTextField.text = item.detailedText
             
             //Load the photo if it exists
             if let _ = item.imageData {
@@ -57,8 +59,9 @@ class DetailViewController: UIViewController {
     
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        if let item = item, let newText = titleTextField.text {
+        if let item = item, let newText = titleTextField.text, let detailedText = detailTextField.text {
             item.text = newText
+            item.detailedText = detailedText
             context.saveChanges()
             navigationController?.popViewController(animated: true)
         }
@@ -96,6 +99,19 @@ extension DetailViewController: UIImagePickerControllerDelegate {
             self.photoImageView.image = image
             self.item?.imageData = image.jpegData(compressionQuality: 1.0)! as NSData
             self.context.saveChanges()
+        }
+    }
+}
+
+//MARK: - Segues
+
+extension DetailViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPhotoCollection" {
+            if let photoCollectionController = segue.destination as? PhotoCollectionController {
+                photoCollectionController.item = self.item
+                photoCollectionController.context = self.context
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ extension Item {
 
     @NSManaged public var isComplete: Bool
     @NSManaged public var text: String
+    @NSManaged public var detailedText: String?
     @NSManaged public var imageData: NSData?
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Item> {

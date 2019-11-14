@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86272624237CB653000F55A5 /* PhotoCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86272623237CB653000F55A5 /* PhotoCollectionController.swift */; };
+		86272626237CBACC000F55A5 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86272625237CBACC000F55A5 /* PhotoCell.swift */; };
 		866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */; };
 		866140532366FAD200BACF35 /* AddItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866140522366FAD200BACF35 /* AddItemController.swift */; };
 		86719ACC2364684D00030EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86719ACB2364684D00030EA3 /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		86272623237CB653000F55A5 /* PhotoCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionController.swift; sourceTree = "<group>"; };
+		86272625237CBACC000F55A5 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		866140502366F82B00BACF35 /* DiaryList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiaryList.xcdatamodel; sourceTree = "<group>"; };
 		866140522366FAD200BACF35 /* AddItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemController.swift; sourceTree = "<group>"; };
 		86719AC82364684D00030EA3 /* DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				86A9533B2378B5D300781BED /* PhotoPickerController.swift */,
+				86272623237CB653000F55A5 /* PhotoCollectionController.swift */,
+				86272625237CBACC000F55A5 /* PhotoCell.swift */,
 			);
 			path = PhotoManager;
 			sourceTree = "<group>";
@@ -221,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				866140532366FAD200BACF35 /* AddItemController.swift in Sources */,
+				86272626237CBACC000F55A5 /* PhotoCell.swift in Sources */,
 				86DE327C236468E2008C2B23 /* CoreDataStack.swift in Sources */,
 				86B7FF432367ACE600276EB9 /* Item+CoreDataProperties.swift in Sources */,
 				866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */,
@@ -228,6 +235,7 @@
 				869B52FD23778C5B0092201A /* HeaderCell.swift in Sources */,
 				86DE327E2364695C008C2B23 /* DiaryListController.swift in Sources */,
 				86B7FF452367B11C00276EB9 /* DiaryFetchedResultsController.swift in Sources */,
+				86272624237CB653000F55A5 /* PhotoCollectionController.swift in Sources */,
 				86DE3280236469C2008C2B23 /* DataSource.swift in Sources */,
 				86B7FF472367B33A00276EB9 /* DetailViewController.swift in Sources */,
 				869B52F823774DD10092201A /* Date.swift in Sources */,

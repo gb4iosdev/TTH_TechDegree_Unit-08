@@ -53,6 +53,7 @@ class DataSource: NSObject, UITableViewDataSource {
     private func configuredCell(_ cell: UITableViewCell, at indexPath: IndexPath) -> UITableViewCell {
         let item = fetchedResultsController.object(at: indexPath)
         cell.textLabel?.text = item.text
+        cell.detailTextLabel?.text = item.detailedText
         return cell
     }
     
