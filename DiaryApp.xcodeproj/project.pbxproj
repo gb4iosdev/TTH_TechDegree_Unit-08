@@ -15,6 +15,8 @@
 		86719AD12364684D00030EA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86719ACF2364684D00030EA3 /* Main.storyboard */; };
 		86719AD32364684F00030EA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD22364684F00030EA3 /* Assets.xcassets */; };
 		86719AD62364684F00030EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD42364684F00030EA3 /* LaunchScreen.storyboard */; };
+		8686E4EC237F434E0068DB6D /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8686E4EA237F434E0068DB6D /* Photo+CoreDataClass.swift */; };
+		8686E4ED237F434E0068DB6D /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8686E4EB237F434E0068DB6D /* Photo+CoreDataProperties.swift */; };
 		869B52F823774DD10092201A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B52F723774DD10092201A /* Date.swift */; };
 		869B52FD23778C5B0092201A /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B52FB23778C5B0092201A /* HeaderCell.swift */; };
 		869B52FE23778C5B0092201A /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869B52FC23778C5B0092201A /* HeaderCell.xib */; };
@@ -39,6 +41,8 @@
 		86719AD22364684F00030EA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86719AD52364684F00030EA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86719AD72364684F00030EA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8686E4EA237F434E0068DB6D /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		8686E4EB237F434E0068DB6D /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		869B52F723774DD10092201A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		869B52FB23778C5B0092201A /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		869B52FC23778C5B0092201A /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 			children = (
 				86B7FF402367ACE600276EB9 /* Item+CoreDataClass.swift */,
 				86B7FF412367ACE600276EB9 /* Item+CoreDataProperties.swift */,
+				8686E4EA237F434E0068DB6D /* Photo+CoreDataClass.swift */,
+				8686E4EB237F434E0068DB6D /* Photo+CoreDataProperties.swift */,
 				86DE327B236468E2008C2B23 /* CoreDataStack.swift */,
 				8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */,
 			);
@@ -228,8 +234,10 @@
 			files = (
 				866140532366FAD200BACF35 /* AddItemController.swift in Sources */,
 				86272626237CBACC000F55A5 /* PhotoCell.swift in Sources */,
+				8686E4EC237F434E0068DB6D /* Photo+CoreDataClass.swift in Sources */,
 				86DE327C236468E2008C2B23 /* CoreDataStack.swift in Sources */,
 				86B7FF432367ACE600276EB9 /* Item+CoreDataProperties.swift in Sources */,
+				8686E4ED237F434E0068DB6D /* Photo+CoreDataProperties.swift in Sources */,
 				866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */,
 				86A9533C2378B5D300781BED /* PhotoPickerController.swift in Sources */,
 				869B52FD23778C5B0092201A /* HeaderCell.swift in Sources */,

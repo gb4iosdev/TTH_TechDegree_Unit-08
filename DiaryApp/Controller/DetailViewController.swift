@@ -3,6 +3,7 @@
 //  DiaryApp
 //
 //  Created by Gavin Butler on 28-10-2019.
+//  Photopicker Attribution:  ImagePickerExample,  Created by Dennis Parussini on 29.10.19.
 //  Copyright © 2019 Gavin Butler. All rights reserved.
 //
 
@@ -14,6 +15,8 @@ class DetailViewController: UIViewController {
     
     var item: Item?
     var context: NSManagedObjectContext!
+    
+    var addedImages: [UIImage] = [] //Capture added photos from the picker (for saving only if save is selected)
     
     //Set up the image picker. Either showing the camera or the photo library
     var imagePicker: UIImagePickerController = {
@@ -41,9 +44,9 @@ class DetailViewController: UIViewController {
             titleTextField.text = item.text
             detailTextField.text = item.detailedText
             
-            //Load the photo if it exists
-            if let _ = item.imageData {
-                let image = UIImage(data: item.imageData! as Data)
+            //Set the photo image view if one exists
+            if item.photos.count > 0 {
+                let image = UIImage(data: item.photos.first!.image! as Data)
                 self.photoImageView.image = image
             }
         }
@@ -62,9 +65,17 @@ class DetailViewController: UIViewController {
         if let item = item, let newText = titleTextField.text, let detailedText = detailTextField.text {
             item.text = newText
             item.detailedText = detailedText
-            context.saveChanges()
-            navigationController?.popViewController(animated: true)
         }
+        
+        for image in self.addedImages {
+            //Create a Photo instance, convert image to NSData, assign image data to photo then photo to item
+            let photo = NSEntityDescription.insertNewObject(forEntityName: Photo.entityName, into: self.context) as! Photo
+            photo.image = image.jpegData(compressionQuality: 1.0)! as NSData
+            item?.photos.insert(photo)
+        }
+        
+        context.saveChanges()
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func deletePressed(_ sender: UIButton) {
@@ -96,9 +107,11 @@ extension DetailViewController: UIImagePickerControllerDelegate {
         
         //Always dismiss the image picker when you're done with it. In this case I assign the image to the image view, but you can also just assign it to a property, save it in Core Data or whatever you need to do with it. This also means you can first assign the image to something and then dismiss the image picker.
         picker.dismiss(animated: true) {
+            //Save to this View Controller IBOutlet
             self.photoImageView.image = image
-            self.item?.imageData = image.jpegData(compressionQuality: 1.0)! as NSData
-            self.context.saveChanges()
+            
+            //Add to the temporary store:
+            self.addedImages.append(image)
         }
     }
 }
@@ -109,9 +122,27 @@ extension DetailViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPhotoCollection" {
             if let photoCollectionController = segue.destination as? PhotoCollectionController {
-                photoCollectionController.item = self.item
-                photoCollectionController.context = self.context
+                photoCollectionController.images = savedImages() + addedImages
             }
         }
+    }
+}
+
+//MARK: - Helper Methods
+
+extension DetailViewController {
+    
+    //Return an array of images from the saved Photos
+    func savedImages() -> [UIImage] {
+        
+        guard let photos = item?.photos else { return [] }
+        
+        var images: [UIImage] = []
+        
+        for photo in photos {
+            images.append(UIImage(data: photo.image! as Data)!)
+        }
+        
+        return images
     }
 }

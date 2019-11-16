@@ -11,8 +11,7 @@ import CoreData
 
 class PhotoCollectionController: UIViewController {
     
-    var item: Item?
-    var context: NSManagedObjectContext!
+    var images: [UIImage]?
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
@@ -34,17 +33,15 @@ extension PhotoCollectionController: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return self.images?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseIdentifier, for: indexPath) as! PhotoCell
         
-        if let item = self.item {
-            print("Got into assigning the image")
-            photoCell.photoImageView.image = UIImage(data: item.imageData! as Data)
-            
+        if let images = self.images {
+            photoCell.photoImageView.image = images[indexPath.row]
         }
         
         return photoCell
