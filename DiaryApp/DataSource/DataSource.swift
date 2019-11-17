@@ -40,7 +40,7 @@ class DataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
         return configuredCell(cell, at: indexPath)
     }
     
@@ -50,10 +50,13 @@ class DataSource: NSObject, UITableViewDataSource {
         context.saveChanges()
     }
     
-    private func configuredCell(_ cell: UITableViewCell, at indexPath: IndexPath) -> UITableViewCell {
+    private func configuredCell(_ cell: ItemCell, at indexPath: IndexPath) -> UITableViewCell {
         let item = fetchedResultsController.object(at: indexPath)
-        cell.textLabel?.text = item.text
-        cell.detailTextLabel?.text = item.detailedText
+        cell.title.text = item.text
+        cell.detail.text = item.detailedText
+        if Date().timeIntervalSince(item.creationDateAsDate()) > (60 * 60) {
+            cell.dateLabel.text = item.creationDateAsDate().formattedMmmDDYYYY()
+        }
         return cell
     }
     

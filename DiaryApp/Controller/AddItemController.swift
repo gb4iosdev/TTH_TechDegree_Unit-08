@@ -30,6 +30,8 @@ class AddItemController: UIViewController {
         let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: managedObjectContext) as! Item
         
         item.text = text                 //item has been saved to the managedContext scratch pad only at this point.  Still not persisted.
+        item.creationDate = Date() as NSDate
+        item.detailedText = Date().formattedMmmDDYYYY()
         
         managedObjectContext.saveChanges()
         

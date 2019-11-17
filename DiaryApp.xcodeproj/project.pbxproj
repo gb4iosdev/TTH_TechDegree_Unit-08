@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		86272624237CB653000F55A5 /* PhotoCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86272623237CB653000F55A5 /* PhotoCollectionController.swift */; };
 		86272626237CBACC000F55A5 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86272625237CBACC000F55A5 /* PhotoCell.swift */; };
+		864F9688238176DA00DE6309 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F9686238176DA00DE6309 /* Location+CoreDataClass.swift */; };
+		864F9689238176DA00DE6309 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F9687238176DA00DE6309 /* Location+CoreDataProperties.swift */; };
 		866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */; };
 		866140532366FAD200BACF35 /* AddItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866140522366FAD200BACF35 /* AddItemController.swift */; };
 		86719ACC2364684D00030EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86719ACB2364684D00030EA3 /* AppDelegate.swift */; };
@@ -17,6 +19,13 @@
 		86719AD62364684F00030EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86719AD42364684F00030EA3 /* LaunchScreen.storyboard */; };
 		8686E4EC237F434E0068DB6D /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8686E4EA237F434E0068DB6D /* Photo+CoreDataClass.swift */; };
 		8686E4ED237F434E0068DB6D /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8686E4EB237F434E0068DB6D /* Photo+CoreDataProperties.swift */; };
+		8689C70E2380764F00D12C99 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689C70D2380764F00D12C99 /* Coordinate.swift */; };
+		8689C7102380770900D12C99 /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689C70F2380770900D12C99 /* JSONDecodable.swift */; };
+		8689C7122380775300D12C99 /* LocationMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689C7112380775300D12C99 /* LocationMapController.swift */; };
+		8689C7142380883000D12C99 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689C7132380883000D12C99 /* ItemCell.swift */; };
+		8689C71623808F1C00D12C99 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689C71523808F1C00D12C99 /* LocationManager.swift */; };
+		8689C71823808F8D00D12C99 /* LocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689C71723808F8D00D12C99 /* LocationError.swift */; };
+		8689C71A2380907600D12C99 /* PermissionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689C7192380907600D12C99 /* PermissionsController.swift */; };
 		869B52F823774DD10092201A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B52F723774DD10092201A /* Date.swift */; };
 		869B52FD23778C5B0092201A /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B52FB23778C5B0092201A /* HeaderCell.swift */; };
 		869B52FE23778C5B0092201A /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869B52FC23778C5B0092201A /* HeaderCell.xib */; };
@@ -33,6 +42,8 @@
 /* Begin PBXFileReference section */
 		86272623237CB653000F55A5 /* PhotoCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionController.swift; sourceTree = "<group>"; };
 		86272625237CBACC000F55A5 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		864F9686238176DA00DE6309 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		864F9687238176DA00DE6309 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		866140502366F82B00BACF35 /* DiaryList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiaryList.xcdatamodel; sourceTree = "<group>"; };
 		866140522366FAD200BACF35 /* AddItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemController.swift; sourceTree = "<group>"; };
 		86719AC82364684D00030EA3 /* DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +54,13 @@
 		86719AD72364684F00030EA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8686E4EA237F434E0068DB6D /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		8686E4EB237F434E0068DB6D /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		8689C70D2380764F00D12C99 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		8689C70F2380770900D12C99 /* JSONDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodable.swift; sourceTree = "<group>"; };
+		8689C7112380775300D12C99 /* LocationMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapController.swift; sourceTree = "<group>"; };
+		8689C7132380883000D12C99 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		8689C71523808F1C00D12C99 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		8689C71723808F8D00D12C99 /* LocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationError.swift; sourceTree = "<group>"; };
+		8689C7192380907600D12C99 /* PermissionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsController.swift; sourceTree = "<group>"; };
 		869B52F723774DD10092201A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		869B52FB23778C5B0092201A /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		869B52FC23778C5B0092201A /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
@@ -81,6 +99,8 @@
 		866602C823684BF3003B12FA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				864F9686238176DA00DE6309 /* Location+CoreDataClass.swift */,
+				864F9687238176DA00DE6309 /* Location+CoreDataProperties.swift */,
 				86B7FF402367ACE600276EB9 /* Item+CoreDataClass.swift */,
 				86B7FF412367ACE600276EB9 /* Item+CoreDataProperties.swift */,
 				8686E4EA237F434E0068DB6D /* Photo+CoreDataClass.swift */,
@@ -114,6 +134,7 @@
 				869B52F423773FBB0092201A /* View */,
 				866602C723684B00003B12FA /* Controller */,
 				866602C823684BF3003B12FA /* Model */,
+				8689C70C2380761E00D12C99 /* LocationManager */,
 				86A953382378B4CF00781BED /* PhotoManager */,
 				869B52F623774DBE0092201A /* Extensions */,
 				869B52F523773FD20092201A /* DataSource */,
@@ -124,12 +145,26 @@
 			path = DiaryApp;
 			sourceTree = "<group>";
 		};
+		8689C70C2380761E00D12C99 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				8689C7112380775300D12C99 /* LocationMapController.swift */,
+				8689C7192380907600D12C99 /* PermissionsController.swift */,
+				8689C71523808F1C00D12C99 /* LocationManager.swift */,
+				8689C71723808F8D00D12C99 /* LocationError.swift */,
+				8689C70D2380764F00D12C99 /* Coordinate.swift */,
+				8689C70F2380770900D12C99 /* JSONDecodable.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
 		869B52F423773FBB0092201A /* View */ = {
 			isa = PBXGroup;
 			children = (
 				86719ACF2364684D00030EA3 /* Main.storyboard */,
 				869B52FB23778C5B0092201A /* HeaderCell.swift */,
 				869B52FC23778C5B0092201A /* HeaderCell.xib */,
+				8689C7132380883000D12C99 /* ItemCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -236,17 +271,26 @@
 				86272626237CBACC000F55A5 /* PhotoCell.swift in Sources */,
 				8686E4EC237F434E0068DB6D /* Photo+CoreDataClass.swift in Sources */,
 				86DE327C236468E2008C2B23 /* CoreDataStack.swift in Sources */,
+				864F9689238176DA00DE6309 /* Location+CoreDataProperties.swift in Sources */,
 				86B7FF432367ACE600276EB9 /* Item+CoreDataProperties.swift in Sources */,
+				8689C70E2380764F00D12C99 /* Coordinate.swift in Sources */,
 				8686E4ED237F434E0068DB6D /* Photo+CoreDataProperties.swift in Sources */,
 				866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */,
+				8689C7102380770900D12C99 /* JSONDecodable.swift in Sources */,
 				86A9533C2378B5D300781BED /* PhotoPickerController.swift in Sources */,
 				869B52FD23778C5B0092201A /* HeaderCell.swift in Sources */,
+				8689C7142380883000D12C99 /* ItemCell.swift in Sources */,
 				86DE327E2364695C008C2B23 /* DiaryListController.swift in Sources */,
+				864F9688238176DA00DE6309 /* Location+CoreDataClass.swift in Sources */,
 				86B7FF452367B11C00276EB9 /* DiaryFetchedResultsController.swift in Sources */,
+				8689C71A2380907600D12C99 /* PermissionsController.swift in Sources */,
+				8689C71623808F1C00D12C99 /* LocationManager.swift in Sources */,
 				86272624237CB653000F55A5 /* PhotoCollectionController.swift in Sources */,
 				86DE3280236469C2008C2B23 /* DataSource.swift in Sources */,
 				86B7FF472367B33A00276EB9 /* DetailViewController.swift in Sources */,
 				869B52F823774DD10092201A /* Date.swift in Sources */,
+				8689C71823808F8D00D12C99 /* LocationError.swift in Sources */,
+				8689C7122380775300D12C99 /* LocationMapController.swift in Sources */,
 				86719ACC2364684D00030EA3 /* AppDelegate.swift in Sources */,
 				86B7FF422367ACE600276EB9 /* Item+CoreDataClass.swift in Sources */,
 			);

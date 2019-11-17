@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 import CoreData
+import MapKit
 
 class DetailViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class DetailViewController: UIViewController {
     var context: NSManagedObjectContext!
     
     var addedImages: [UIImage] = [] //Capture added photos from the picker (for saving only if save is selected)
+    var userLocation: Coordinate?   //Capture the user's location coordinate (for saving only if save is selected)
     
     //Set up the image picker. Either showing the camera or the photo library
     var imagePicker: UIImagePickerController = {
@@ -33,8 +35,10 @@ class DetailViewController: UIViewController {
     
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var detailTextField: UITextField!
+    @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var miniMapView: MKMapView!
+    
     
     
     override func viewDidLoad() {
@@ -42,18 +46,31 @@ class DetailViewController: UIViewController {
         //Load the item if it exists
         if let item = item {
             titleTextField.text = item.text
-            detailTextField.text = item.detailedText
+            detailTextView.text = item.detailedText
             
             //Set the photo image view if one exists
             if item.photos.count > 0 {
                 let image = UIImage(data: item.photos.first!.image! as Data)
                 self.photoImageView.image = image
             }
+            
+            //Set the map if location was saved
+            if let location = item.location?.asCoordinate() {
+                miniMapView.isHidden = false
+                adjustMap(with: location)
+            }
         }
         
         //Always make self the delegate of the image picker.
         imagePicker.delegate = self
     }
+    
+    @IBAction func addLocationButtonPressed(_ sender: Any) {
+        let mapController = self.storyboard?.instantiateViewController(withIdentifier: "LocationMapController") as! LocationMapController
+        mapController.locationSaverDelegate = self
+        self.navigationController?.pushViewController(mapController, animated: true)
+    }
+    
     
     @IBAction func addPhotoButtonPressed(_ sender: UIButton) {
         present(imagePicker, animated: true)
@@ -62,17 +79,30 @@ class DetailViewController: UIViewController {
     
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        if let item = item, let newText = titleTextField.text, let detailedText = detailTextField.text {
+        //Save Item information
+        if let item = item, let newText = titleTextField.text, let detailedText = detailTextView.text {
             item.text = newText
-            item.detailedText = detailedText
+            item.creationDate = Date() as NSDate
+            item.detailedText = Date().formattedMmmDDYYYY()
         }
         
+        //Save Item photos
         for image in self.addedImages {
             //Create a Photo instance, convert image to NSData, assign image data to photo then photo to item
             let photo = NSEntityDescription.insertNewObject(forEntityName: Photo.entityName, into: self.context) as! Photo
             photo.image = image.jpegData(compressionQuality: 1.0)! as NSData
             item?.photos.insert(photo)
         }
+        
+        //Save Location Data
+        if let coordinate = self.userLocation {
+            let location = NSEntityDescription.insertNewObject(forEntityName: Location.entityName, into: self.context) as! Location
+            location.latitude = coordinate.latitude
+            location.longitude = coordinate.longitude
+            item?.location = location
+            print("Item location is: \(item?.location)")
+        }
+        
         
         context.saveChanges()
         navigationController?.popViewController(animated: true)
@@ -116,6 +146,16 @@ extension DetailViewController: UIImagePickerControllerDelegate {
     }
 }
 
+//MARK: - Location Management:
+
+extension DetailViewController: LocationSaverDelegate {
+    func saveLocation(at coordinate: Coordinate) {
+        userLocation = coordinate
+        miniMapView.isHidden = false
+        adjustMap(with: coordinate)
+    }
+}
+
 //MARK: - Segues
 
 extension DetailViewController {
@@ -144,5 +184,14 @@ extension DetailViewController {
         }
         
         return images
+    }
+    
+    func adjustMap(with coordinate: Coordinate) {
+        print("Adjusting map with coord lat: \(coordinate.latitude) & long: \(coordinate.longitude)")
+        let coordinate2D = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        let span = MKCoordinateRegion(center: coordinate2D, latitudinalMeters: 1_000.0, longitudinalMeters: 1_000.0).span
+        let region = MKCoordinateRegion(center: coordinate2D, span: span)
+        miniMapView.setRegion(region, animated: true)
     }
 }
