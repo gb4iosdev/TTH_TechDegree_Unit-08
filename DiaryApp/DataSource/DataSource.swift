@@ -14,14 +14,16 @@ class DataSource: NSObject, UITableViewDataSource {
     
     private let tableView: UITableView
     private let context: NSManagedObjectContext
+    private var filter: String = "kk"
     
     lazy var fetchedResultsController: DiaryFetchedResultsController = {
-        return DiaryFetchedResultsController(managedObjectContext: self.context, tableView: self.tableView)
+        return DiaryFetchedResultsController(managedObjectContext: self.context, tableView: self.tableView, filter: self.filter)
     }()
     
-    init(tableView: UITableView, context: NSManagedObjectContext) {
+    init(tableView: UITableView, context: NSManagedObjectContext, filter: String) {
         self.tableView = tableView
         self.context = context
+        self.filter = filter
     }
     
     func object(at indexPath: IndexPath) -> Item {

@@ -38,10 +38,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var miniMapView: MKMapView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     
     
     override func viewDidLoad() {
+        
+        if item == nil { self.deleteButton.isHidden = true }
         
         //Load the item if it exists
         if let item = item {
@@ -79,9 +82,22 @@ class DetailViewController: UIViewController {
     
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        //Save Item information
-        if let item = item, let newText = titleTextField.text, let detailedText = detailTextView.text {
-            item.text = newText
+        
+        guard let titleText = titleTextField.text, !titleText.isEmpty else {
+            let alertController = UIAlertController(title: "Diary title cannot be empty", message: nil, preferredStyle: .alert)
+            alertController.addAction(.init(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        if self.item == nil {  //Need to create a new item
+            let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.context) as! Item
+            self.item = item
+        }
+        
+        //Save the information to the item
+        if let item = self.item {
+            item.text = titleText
             item.creationDate = Date() as NSDate
             item.detailedText = Date().formattedMmmDDYYYY()
         }
@@ -100,9 +116,7 @@ class DetailViewController: UIViewController {
             location.latitude = coordinate.latitude
             location.longitude = coordinate.longitude
             item?.location = location
-            print("Item location is: \(item?.location)")
         }
-        
         
         context.saveChanges()
         navigationController?.popViewController(animated: true)

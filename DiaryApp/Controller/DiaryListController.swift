@@ -13,12 +13,14 @@ class DiaryListController: UITableViewController {
 
     let managedObjectContext = CoreDataStack().managedObjectContext
     
+    var filterTerm: String = "kk"
+    
     lazy var dataSource: DataSource = {
-        return DataSource(tableView: self.tableView, context: self.managedObjectContext)
+        return DataSource(tableView: self.tableView, context: self.managedObjectContext, filter: filterTerm)
     }()
     
     lazy var fetchedResultsController: DiaryFetchedResultsController = {
-        return DiaryFetchedResultsController(managedObjectContext: self.managedObjectContext, tableView: self.tableView)
+        return DiaryFetchedResultsController(managedObjectContext: self.managedObjectContext, tableView: self.tableView, filter: filterTerm)
     }()
     
     lazy var headerView: UITableViewCell = {
@@ -26,6 +28,8 @@ class DiaryListController: UITableViewController {
         cell.dateLabel.text = Date().formattedMmmDDYYYY()
         return cell
     }()
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     
     override func viewDidLoad() {
@@ -45,19 +49,17 @@ class DiaryListController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newItem",
-        let navigationController = segue.destination as? UINavigationController,
-        let addTaskController = navigationController.topViewController as? AddItemController {
-            print("This Context: \(self.managedObjectContext.description)")
-            addTaskController.managedObjectContext = self.managedObjectContext
-        } else if segue.identifier == "showDetail" {
-            guard let detailViewController = segue.destination as? DetailViewController,
-            let indexPath = tableView.indexPathForSelectedRow else {
-                return
+        
+        guard let detailViewController = segue.destination as? DetailViewController else { return }
+        
+        detailViewController.context = self.managedObjectContext
+        
+        if segue.identifier == "showDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let item = dataSource.object(at: indexPath)
+                detailViewController.item = item
+
             }
-            let item = dataSource.object(at: indexPath)
-            detailViewController.item = item
-            detailViewController.context = self.managedObjectContext
         }
     }
     
@@ -76,5 +78,28 @@ class DiaryListController: UITableViewController {
 extension DiaryListController {
     func configureUI() {
         self.title = Date().formattedMmmDDYYYY()
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(DiaryListController.refreshSearchResults))
+        
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        definesPresentationContext = true
     }
+    
+    @objc func refreshSearchResults() {
+        //self.dismiss(animated: true, completion: nil)
+        
+    }
+}
+
+extension DiaryListController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text!)
+        //self.filterTerm = searchController.searchBar.text!
+        //fetchedResultsController.tryFetch()
+        self.tableView.reloadData()
+    }
+    
 }

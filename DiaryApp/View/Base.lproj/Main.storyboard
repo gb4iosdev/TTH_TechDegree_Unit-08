@@ -78,7 +78,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IEP-9c-l5w">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="acG-6C-uxc" kind="presentation" identifier="newItem" id="djj-l2-DEU"/>
+                                <segue destination="TPv-dM-F2I" kind="show" identifier="newItem" id="Dyb-af-7Pu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -86,51 +86,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="71g-f8-VD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1779.7101449275365" y="138.61607142857142"/>
-        </scene>
-        <!--Add Item Controller-->
-        <scene sceneID="B0U-Bq-Cwq">
-            <objects>
-                <viewController id="iwl-Sd-wh1" customClass="AddItemController" customModule="DiaryApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hB4-rP-r89">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sK9-H3-yqB" userLabel="textField">
-                                <rect key="frame" x="16" y="120" width="382" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="qAE-Ix-bZg" firstAttribute="trailing" secondItem="sK9-H3-yqB" secondAttribute="trailing" constant="16" id="H7b-0T-lFg"/>
-                            <constraint firstItem="sK9-H3-yqB" firstAttribute="leading" secondItem="qAE-Ix-bZg" secondAttribute="leading" constant="16" id="YoO-DH-jB5"/>
-                            <constraint firstItem="sK9-H3-yqB" firstAttribute="top" secondItem="qAE-Ix-bZg" secondAttribute="top" constant="32" id="uks-vT-O5V"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="qAE-Ix-bZg"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="2ei-FW-pVK">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="2vM-04-bM0">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="cancelPressed:" destination="iwl-Sd-wh1" id="D4o-F3-K8A"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0r8-SV-CRc">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="savePressed:" destination="iwl-Sd-wh1" id="a7f-c8-d3o"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="textField" destination="sK9-H3-yqB" id="get-WA-5cJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bkt-B9-T4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3542.0289855072465" y="138.61607142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g8b-rO-Pyf">
@@ -155,25 +110,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SDb-qk-flj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="869.56521739130437" y="138.61607142857142"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="wbo-jH-guf">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="acG-6C-uxc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H4d-7y-whS">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.034165493569999997" green="0.33236603669999998" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="iwl-Sd-wh1" kind="relationship" relationship="rootViewController" id="HWf-mr-yoU"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zk8-89-ik8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2631.8840579710145" y="138.61607142857142"/>
         </scene>
         <!--Location Map Controller-->
         <scene sceneID="2Uw-te-Fza">
@@ -342,27 +278,8 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1L8-9a-QYX" userLabel="SaveButton">
-                                        <rect key="frame" x="0.0" y="58" width="398" height="50"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Lut-5l-ySa"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                        <state key="normal" title="Save">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="saveButtonPressed:" destination="TPv-dM-F2I" eventType="touchUpInside" id="c2A-Dn-5rg"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jm-aJ-INm" userLabel="DeleteButton">
-                                        <rect key="frame" x="0.0" y="116" width="398" height="50"/>
+                                        <rect key="frame" x="0.0" y="58" width="398" height="50"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="BZ1-yh-yo6"/>
@@ -378,6 +295,25 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="deletePressed:" destination="TPv-dM-F2I" eventType="touchUpInside" id="gHD-ZE-HHD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1L8-9a-QYX" userLabel="SaveButton">
+                                        <rect key="frame" x="0.0" y="116" width="398" height="50"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Lut-5l-ySa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="TPv-dM-F2I" eventType="touchUpInside" id="c2A-Dn-5rg"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -406,6 +342,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="R41-xR-GcN"/>
                     <connections>
+                        <outlet property="deleteButton" destination="5Jm-aJ-INm" id="lym-eD-cIe"/>
                         <outlet property="detailTextView" destination="Glf-XS-GiB" id="VjV-XK-seF"/>
                         <outlet property="miniMapView" destination="iU3-Dv-6U8" id="EAF-FS-CXn"/>
                         <outlet property="photoImageView" destination="gXO-Ap-0QD" id="aIt-5D-h74"/>
@@ -446,7 +383,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vw4-Td-eFP">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vw4-Td-eFP">
                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                                 </imageView>
                                             </subviews>
@@ -479,7 +416,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLG-87-KOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4606" y="871"/>
+            <point key="canvasLocation" x="4605.7971014492759" y="870.53571428571422"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1NS-ea-cR2"/>
+    </inferredMetricsTieBreakers>
 </document>
