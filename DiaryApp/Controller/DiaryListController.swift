@@ -13,14 +13,8 @@ class DiaryListController: UITableViewController {
 
     let managedObjectContext = CoreDataStack().managedObjectContext
     
-    var filterTerm: String = "kk"
-    
     lazy var dataSource: DataSource = {
-        return DataSource(tableView: self.tableView, context: self.managedObjectContext, filter: filterTerm)
-    }()
-    
-    lazy var fetchedResultsController: DiaryFetchedResultsController = {
-        return DiaryFetchedResultsController(managedObjectContext: self.managedObjectContext, tableView: self.tableView, filter: filterTerm)
+        return DataSource(tableView: self.tableView, context: self.managedObjectContext)
     }()
     
     lazy var headerView: UITableViewCell = {
@@ -64,7 +58,6 @@ class DiaryListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //return ListHeader.view(withWidth: tableView.frame.width)
         return headerView
     }
     
@@ -91,15 +84,23 @@ extension DiaryListController {
         //self.dismiss(animated: true, completion: nil)
         
     }
+    
 }
 
 extension DiaryListController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text!)
-        //self.filterTerm = searchController.searchBar.text!
-        //fetchedResultsController.tryFetch()
-        self.tableView.reloadData()
+        print("searchbar text is: \(searchController.searchBar.text!)")
+        
+        self.dataSource.fetchedResultsController.fetchRequest.predicate = nil
+        
+        if !searchController.searchBar.text!.isEmpty {
+            self.dataSource.fetchedResultsController.fetchRequest.predicate = NSPredicate(format: "text CONTAINS[cd] %@", searchController.searchBar.text!)
+        }
+        
+        self.dataSource.fetchedResultsController.tryFetch()
+        
+        tableView.reloadData()
     }
     
 }

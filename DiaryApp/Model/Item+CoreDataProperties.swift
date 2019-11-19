@@ -20,10 +20,8 @@ extension Item {
     @NSManaged public var photos: Set<Photo>
     @NSManaged public var location: Location?
     
-    @nonobjc public class func fetchRequest(withFilter filterTerm: String) -> NSFetchRequest<Item> {
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Item> {
         let request = NSFetchRequest<Item>(entityName: "Item")
-        let predicate = NSPredicate(format: "text CONTAINS[cd] %@", filterTerm)
-        request.predicate = predicate
         request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         return request
     }

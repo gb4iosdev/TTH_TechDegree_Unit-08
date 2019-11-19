@@ -13,9 +13,9 @@ class DiaryFetchedResultsController: NSFetchedResultsController<Item>, NSFetched
     
     private let tableView: UITableView
     
-    init(managedObjectContext: NSManagedObjectContext, tableView: UITableView, filter: String) {
+    init(managedObjectContext: NSManagedObjectContext, tableView: UITableView) {
         self.tableView = tableView
-        super.init(fetchRequest: Item.fetchRequest(withFilter: filter), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        super.init(fetchRequest: Item.fetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         self.delegate = self
         tryFetch()
     }
