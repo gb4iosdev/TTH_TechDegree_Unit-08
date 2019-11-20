@@ -75,7 +75,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Ivc-wg-Nxp">
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="mMj-QI-5a0"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IEP-9c-l5w">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -211,7 +210,7 @@
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-Su-dAa" userLabel="mapViewContainer">
                                         <rect key="frame" x="0.0" y="0.0" width="195" height="100"/>
                                         <subviews>
-                                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iU3-Dv-6U8">
+                                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iU3-Dv-6U8">
                                                 <rect key="frame" x="0.0" y="0.0" width="195" height="100"/>
                                             </mapView>
                                         </subviews>

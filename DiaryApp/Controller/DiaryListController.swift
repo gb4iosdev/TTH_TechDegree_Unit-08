@@ -92,18 +92,18 @@ extension DiaryListController {
     func configureUI() {
         self.title = Date().formattedMmmDDYYYY()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(DiaryListController.showSearchBar))
-        self.navigationItem.leftBarButtonItem?.isEnabled = true
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(DiaryListController.showSearchBar))
+//        self.navigationItem.leftBarButtonItem?.isEnabled = true
     }
     
-    @objc func showSearchBar() {
-        //Show the search bar when user selects the search symbol (navbar left item).
-        //tableView.tableHeaderView = searchController.searchBar
-        navigationItem.searchController = searchController
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchResultsUpdater = self
-        definesPresentationContext = true
-    }
+//    @objc func showSearchBar() {
+//        //Show the search bar when user selects the search symbol (navbar left item).
+//        //tableView.tableHeaderView = searchController.searchBar
+//        navigationItem.searchController = searchController
+//        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.searchResultsUpdater = self
+//        definesPresentationContext = true
+//    }
     
 }
 

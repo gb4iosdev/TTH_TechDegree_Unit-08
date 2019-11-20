@@ -202,10 +202,12 @@ extension DetailViewController {
     
     func adjustMap(with coordinate: Coordinate) {
         print("Adjusting map with coord lat: \(coordinate.latitude) & long: \(coordinate.longitude)")
-        let coordinate2D = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
         
-        let span = MKCoordinateRegion(center: coordinate2D, latitudinalMeters: 1_000.0, longitudinalMeters: 1_000.0).span
-        let region = MKCoordinateRegion(center: coordinate2D, span: span)
-        miniMapView.setRegion(region, animated: true)
+        let pin = MKPointAnnotation()
+        pin.coordinate = coordinate.twoDimensional()
+        pin.title = "Last Saved Location"
+        
+        miniMapView.setRegion(around: coordinate, withSpan: 1_000)
+        miniMapView.addAnnotation(pin)
     }
 }
