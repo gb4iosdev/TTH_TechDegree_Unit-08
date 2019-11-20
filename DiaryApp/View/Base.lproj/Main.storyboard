@@ -75,6 +75,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Ivc-wg-Nxp">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="mMj-QI-5a0"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IEP-9c-l5w">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
