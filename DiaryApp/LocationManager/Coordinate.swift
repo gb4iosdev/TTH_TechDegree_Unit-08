@@ -9,22 +9,15 @@
 import Foundation
 import CoreLocation
 
+//2D coordinate structure
 struct Coordinate {
     let latitude: Double
     let longitude: Double
-    
-    
 }
 
-//extension Coordinate: JSONDecodable {
-//    init?(json: [String : Any]) {
-//        guard let latitudeValue = json["latitude"] as? Double, let longitudeValue = json["longitude"] as? Double else { return nil }
-//        self.latitude = latitudeValue
-//        self.longitude = longitudeValue
-//    }
-//}
-
 extension Coordinate {
+    
+    //Initialize coordinate with a location
     init(location: CLLocation) {
         self.latitude = location.coordinate.latitude
         self.longitude = location.coordinate.longitude
@@ -32,6 +25,8 @@ extension Coordinate {
 }
 
 extension Coordinate {
+    
+    //Return a CLLocationCoordinate2D from the coordinate to assist with map region creation
     func twoDimensional() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }

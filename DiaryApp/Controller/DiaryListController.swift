@@ -61,15 +61,17 @@ class DiaryListController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         //Should only be segueing to the detail VC here.
-        guard segue.identifier == "showDetail", let detailViewController = segue.destination as? DetailViewController else { return }
+        guard let detailViewController = segue.destination as? DetailViewController else { return }
         
         //Set context and item using selected tableView row (dependency injection)
         detailViewController.context = self.managedObjectContext
-        if let indexPath = tableView.indexPathForSelectedRow {
-            let item = dataSource.object(at: indexPath)
-            detailViewController.item = item
-        }
         
+        if segue.identifier == "showDetail" {   //Need to set the item
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let item = dataSource.object(at: indexPath)
+                detailViewController.item = item
+            }
+        }
         //searchController.isActive = false
         //searchController.searchBar.isHidden = true
         

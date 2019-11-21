@@ -7,13 +7,13 @@
 //  Copyright © 2019 Gavin Butler. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import CoreData
 import MapKit
 
 class DetailViewController: UIViewController {
     
+    //Assigned in from DiaryListController
     var item: Item?
     var context: NSManagedObjectContext!
     
@@ -33,23 +33,26 @@ class DetailViewController: UIViewController {
         return picker
     }()
     
-    
+    //IBOutlet Variables
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var miniMapView: MKMapView!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     
     
     
     override func viewDidLoad() {
         
+        //Hide the delete button if we are dealing with the entry of a new Item
         if item == nil { self.deleteButton.isHidden = true }
         
         //Load the item if it exists
         if let item = item {
             titleTextField.text = item.text
             detailTextView.text = item.detailedText
+            dateLabel.text = item.creationDateAsDate().formattedMmmDDYYYY()
             
             //Set the photo image view if one exists
             if item.photos.count > 0 {
@@ -69,20 +72,26 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func addLocationButtonPressed(_ sender: Any) {
+        
+        //Instantiate the ViewController from the storyboard, assigned the delegate to self for later saving of user location
         let mapController = self.storyboard?.instantiateViewController(withIdentifier: "LocationMapController") as! LocationMapController
         mapController.locationSaverDelegate = self
+        
+        //Show view controller by pushing onto the navigation stack
         self.navigationController?.pushViewController(mapController, animated: true)
     }
     
     
     @IBAction func addPhotoButtonPressed(_ sender: UIButton) {
-        present(imagePicker, animated: true)
         
+        //Simply present the image picker
+        present(imagePicker, animated: true)
     }
     
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         
+        //Display Alert to user if required information is not provided, and return back to DetailViewController
         guard let titleText = titleTextField.text, !titleText.isEmpty else {
             let alertController = UIAlertController(title: "Diary title cannot be empty", message: nil, preferredStyle: .alert)
             alertController.addAction(.init(title: "OK", style: .default, handler: nil))
@@ -91,6 +100,7 @@ class DetailViewController: UIViewController {
         }
         
         if self.item == nil {  //Need to create a new item
+            print("self.context == nil: \(self.context == nil)")
             let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.context) as! Item
             self.item = item
         }
@@ -99,7 +109,7 @@ class DetailViewController: UIViewController {
         if let item = self.item {
             item.text = titleText
             item.creationDate = Date() as NSDate
-            item.detailedText = Date().formattedMmmDDYYYY()
+            item.detailedText = detailTextView.text
         }
         
         //Save Item photos
@@ -118,11 +128,14 @@ class DetailViewController: UIViewController {
             item?.location = location
         }
         
+        //Data persistence and return to DiaryListController
         context.saveChanges()
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func deletePressed(_ sender: UIButton) {
+        
+        //Check to see that we have a current item, then delete, persist the change & return to DiaryListController
         if let item = item {
             context.delete(item)
             context.saveChanges()
@@ -131,9 +144,7 @@ class DetailViewController: UIViewController {
     }
 }
 
-//MARK: - Photo Picker
-
-//Need to conform to UINavigationControllerDelegate
+//MARK: - Photo Picker – needs to conform to UINavigationControllerDelegate (all protocol requirements are optional)
 extension DetailViewController: UINavigationControllerDelegate {}
 
 //Conform to UIImagePickerControllerDelegate
@@ -146,10 +157,10 @@ extension DetailViewController: UIImagePickerControllerDelegate {
     //This gets called when you take a picture with the camera or choose one from the photo library.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        //Parse the image and typecast it to a UIImage to use somewhere else in your view controller
+        //Parse the image and typecast it to a UIImage
         guard let image = info[.originalImage] as? UIImage else { return }
         
-        //Always dismiss the image picker when you're done with it. In this case I assign the image to the image view, but you can also just assign it to a property, save it in Core Data or whatever you need to do with it. This also means you can first assign the image to something and then dismiss the image picker.
+        //Always dismiss the image picker when you’ve finished with it. The image is assigned to the image view and also to the temporary store which is referenced if the user saves.
         picker.dismiss(animated: true) {
             //Save to this View Controller IBOutlet
             self.photoImageView.image = image
@@ -163,6 +174,8 @@ extension DetailViewController: UIImagePickerControllerDelegate {
 //MARK: - Location Management:
 
 extension DetailViewController: LocationSaverDelegate {
+    
+    //When the user selects Save on the mapController it informs it’s delegate (this ViewController) to execute the save the coordinate and show the map.
     func saveLocation(at coordinate: Coordinate) {
         userLocation = coordinate
         miniMapView.isHidden = false
@@ -173,7 +186,10 @@ extension DetailViewController: LocationSaverDelegate {
 //MARK: - Segues
 
 extension DetailViewController {
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //When user taps on the photo, show the collection of photos saved to this item (saved images plus added images)
         if segue.identifier == "showPhotoCollection" {
             if let photoCollectionController = segue.destination as? PhotoCollectionController {
                 photoCollectionController.images = savedImages() + addedImages
@@ -186,7 +202,7 @@ extension DetailViewController {
 
 extension DetailViewController {
     
-    //Return an array of images from the saved Photos
+    //Return an array of images from the saved Photos for the photoCollectionController
     func savedImages() -> [UIImage] {
         
         guard let photos = item?.photos else { return [] }
@@ -200,8 +216,8 @@ extension DetailViewController {
         return images
     }
     
+    //Move the map to the centre at the specified co-ordinate & add pin
     func adjustMap(with coordinate: Coordinate) {
-        print("Adjusting map with coord lat: \(coordinate.latitude) & long: \(coordinate.longitude)")
         
         let pin = MKPointAnnotation()
         pin.coordinate = coordinate.twoDimensional()

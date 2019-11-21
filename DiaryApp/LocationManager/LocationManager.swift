@@ -9,16 +9,7 @@
 import Foundation
 import CoreLocation
 
-protocol LocationPermissionsDelegate: class {
-    func authorizationSucceeded()
-    func authorizationFailedWithStatus(_ status: CLAuthorizationStatus)
-}
-
-protocol LocationManagerDelegate: class {
-    func obtainedCoordinates(_ coordinate: Coordinate)
-    func failedWithError(_ error: LocationError)
-}
-
+//Acts as Apple’s CLLocationManagerDelegate so that it can respond to location finding events, and informs it’s delegates of locations and permission events.
 class LocationManager: NSObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     weak var permissionsDelegate: LocationPermissionsDelegate?
@@ -31,6 +22,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         manager.delegate = self
     }
     
+    //Note static variable accessing authorization class function on CLLocationManager (can be set or unset only by user)
     static var isAuthorized: Bool {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse: return true
@@ -38,31 +30,27 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    //Informs caller of status and launches alert (via manager.requestWhenInUseAuthorization()) if user input is required
     func requestLocationAuthorization() throws {
         
         let authorizationStatus = CLLocationManager.authorizationStatus()
-        print("Auth status is: \(authorizationStatus.rawValue)")
         
         if authorizationStatus == .restricted || authorizationStatus == .denied {
             throw LocationError.disallowedByUser
         } else if authorizationStatus == .notDetermined {
-            print("just about to call reqWhenInUseAuth")
             manager.requestWhenInUseAuthorization()
-            print("straight after reqWhenInUseAuth call and status is: \(CLLocationManager.authorizationStatus().rawValue)")
-        } /*else if authorizationStatus == .authorizedWhenInUse {     //Can be maintained in the simulator from previous sessions...
-            permissionsDelegate?.authorizationSucceeded()
-        }*/ else {
-            print("Returning without doing anything")
+        } else {
             return
         }
     }
     
+    //Trigger the location manager to look for the location (responds via the delegate methods below, particularly didUpdateLocations)
     func requestLocation() {
         manager.requestLocation()
     }
     
+    //Keep the permissions delegate informed of changes to authorization status coming from the CLLocationManager
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("Got into locationManager callback and status is: \(CLLocationManager.authorizationStatus().rawValue)")
         if status == .authorizedWhenInUse {
             permissionsDelegate?.authorizationSucceeded()
         } else if status == .restricted || status == .denied {
@@ -72,6 +60,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    //Keep the locations delegate informed of failure when the CLLocationManager tried to determine location
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         guard let error = error as? CLError else {
             locationsDelegate?.failedWithError(.unknownError)
@@ -85,13 +74,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    //Happy delegate path – inform the locations delegate of the updated location.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {
             locationsDelegate?.failedWithError(.unableToFindLocation)
             return
         }
-        
-        print("Did update locations was called")
         
         let coordinate = Coordinate(location: location)
         

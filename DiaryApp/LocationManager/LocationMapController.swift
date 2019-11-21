@@ -9,15 +9,13 @@
 import UIKit
 import MapKit
 
-protocol LocationSaverDelegate: class {
-    func saveLocation(at: Coordinate)
-}
-
+//Manages the display of the map view, and passes the user location to the locationSaverDelegate when the user selects save
 class LocationMapController: UIViewController {
     
     // MARK: - Properties
     let mapSpanRadius: CLLocationDistance = 5_000
     
+    //Update the map whenever the coordinate changes.
     var coordinate: Coordinate? {
         didSet {
             if let coordinate = coordinate {
@@ -30,6 +28,7 @@ class LocationMapController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    //Set this view controller as the recipient of location and permission events
     lazy var locationManager: LocationManager = {
         return LocationManager(locationsDelegate: self, permissionsDelegate: self)
     }()
@@ -43,6 +42,7 @@ class LocationMapController: UIViewController {
         super.viewDidLoad()
     }
 
+    //If authorized find location, otherwise request permission
     override func viewDidAppear(_ animated: Bool) {
         if isAuthorized {
             locationManager.requestLocation()
@@ -51,8 +51,8 @@ class LocationMapController: UIViewController {
         }
     }
     
+     //If a co-ordinate has been set, pass it back to the detail view controller to later save if the user saves the item.
     @IBAction func saveLocationPressed(_ sender: UIButton) {
-        print("Save location button pressed")
         if let coordinate = self.coordinate {
             locationSaverDelegate?.saveLocation(at: coordinate)
         }
@@ -102,11 +102,14 @@ class LocationMapController: UIViewController {
 
 // MARK: - Location Manager Delegate
 extension LocationMapController: LocationManagerDelegate {
+    
+    //Location found by the CLLocationManager.  Save it and centre the map on it
     func obtainedCoordinates(_ coordinate: Coordinate) {
         self.coordinate = coordinate
         adjustMap(with: coordinate)
     }
     
+    //Simply print the error for now if there is a failure
     func failedWithError(_ error: LocationError) {
         print(error)
     }
@@ -126,27 +129,12 @@ extension LocationMapController: LocationPermissionsDelegate {
 
 
 //// MARK: - Map Functions
-//
-//extension LocationMapController {
-//    func updateUserLocation(for searchController: UISearchController) {
-//        guard let coordinate = coordinate else { return }
-//
-//        self.mapView.removeAnnotations(self.mapView.annotations)
-//        let point = MKPointAnnotation()
-//        point.coordinate = CLLocationCoordinate2D(latitude: .init(floatLiteral: 60.4), longitude: .init(floatLiteral: 120.2))
-//        self.mapView.addAnnotation(point)
-//    }
-//}
 
-// MARK: - MapKit
 extension LocationMapController {
+    
+    //Centre the map using the passed in coordinate
     func adjustMap(with coordinate: Coordinate) {
-        print("Adjusting map with coord lat: \(coordinate.latitude) & long: \(coordinate.longitude)")
-        let coordinate2D = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        
-        let span = MKCoordinateRegion(center: coordinate2D, latitudinalMeters: mapSpanRadius, longitudinalMeters: mapSpanRadius).span
-        let region = MKCoordinateRegion(center: coordinate2D, span: span)
-        mapView?.setRegion(region, animated: true)
+        mapView?.setRegion(around: coordinate, withSpan: mapSpanRadius)
     }
 }
 

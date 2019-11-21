@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Error types during process of seeking user permission to determine their location.
 enum LocationError: Error {
     case unknownError
     case disallowedByUser

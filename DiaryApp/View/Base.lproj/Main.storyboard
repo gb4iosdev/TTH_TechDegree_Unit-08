@@ -188,12 +188,20 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Diary Item Detail Here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Glf-XS-GiB" userLabel="Detail Text View">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Glf-XS-GiB" userLabel="Detail Text View">
                                         <rect key="frame" x="8" y="63" width="366" height="405"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <real key="value" value="0.40000000000000002"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textView>
                                 </subviews>
                                 <constraints>
@@ -342,6 +350,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="R41-xR-GcN"/>
                     <connections>
+                        <outlet property="dateLabel" destination="rAo-F8-ZfH" id="eru-H7-C9h"/>
                         <outlet property="deleteButton" destination="5Jm-aJ-INm" id="lym-eD-cIe"/>
                         <outlet property="detailTextView" destination="Glf-XS-GiB" id="VjV-XK-seF"/>
                         <outlet property="miniMapView" destination="iU3-Dv-6U8" id="EAF-FS-CXn"/>
@@ -420,6 +429,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1NS-ea-cR2"/>
+        <segue reference="Dyb-af-7Pu"/>
     </inferredMetricsTieBreakers>
 </document>
