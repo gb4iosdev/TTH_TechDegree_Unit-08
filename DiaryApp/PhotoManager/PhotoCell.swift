@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Custom cell class for the collection view.
 class PhotoCell: UICollectionViewCell {
     
     static let reuseIdentifier = String(describing: PhotoCell.self)

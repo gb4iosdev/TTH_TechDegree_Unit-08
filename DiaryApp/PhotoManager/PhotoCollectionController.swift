@@ -11,6 +11,7 @@ import CoreData
 
 class PhotoCollectionController: UIViewController {
     
+    //The set of images to display, passed in by the detail view controller
     var images: [UIImage]?
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
@@ -19,6 +20,7 @@ class PhotoCollectionController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set the datasource to be this view controller
         photoCollectionView.dataSource = self
     }
     
@@ -38,6 +40,7 @@ extension PhotoCollectionController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        //Return a custom photo cell which is defined in IB and contains a simple reuseID property and IBOutlet to an imageView to display the image.
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseIdentifier, for: indexPath) as! PhotoCell
         
         if let images = self.images {
