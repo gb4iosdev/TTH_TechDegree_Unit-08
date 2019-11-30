@@ -37,6 +37,7 @@
 		86DE327C236468E2008C2B23 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE327B236468E2008C2B23 /* CoreDataStack.swift */; };
 		86DE327E2364695C008C2B23 /* DiaryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE327D2364695C008C2B23 /* DiaryListController.swift */; };
 		86DE3280236469C2008C2B23 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE327F236469C2008C2B23 /* DataSource.swift */; };
+		86E2BF812391FC850026626E /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E2BF802391FC850026626E /* AlertManager.swift */; };
 		86FF682B23855C32002C393D /* MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF682A23855C32002C393D /* MKMapView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		86DE327B236468E2008C2B23 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		86DE327D2364695C008C2B23 /* DiaryListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListController.swift; sourceTree = "<group>"; };
 		86DE327F236469C2008C2B23 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		86E2BF802391FC850026626E /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		86FF682A23855C32002C393D /* MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				8686E4EB237F434E0068DB6D /* Photo+CoreDataProperties.swift */,
 				86DE327B236468E2008C2B23 /* CoreDataStack.swift */,
 				8661404F2366F82B00BACF35 /* DiaryList.xcdatamodeld */,
+				86E2BF802391FC850026626E /* AlertManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */,
 				86A9533C2378B5D300781BED /* PhotoPickerController.swift in Sources */,
 				869B52FD23778C5B0092201A /* HeaderCell.swift in Sources */,
+				86E2BF812391FC850026626E /* AlertManager.swift in Sources */,
 				8689C7142380883000D12C99 /* ItemCell.swift in Sources */,
 				86DE327E2364695C008C2B23 /* DiaryListController.swift in Sources */,
 				864F9688238176DA00DE6309 /* Location+CoreDataClass.swift in Sources */,

@@ -43,7 +43,7 @@ class DiaryListController: UITableViewController {
         
         definesPresentationContext = true
         navigationItem.searchController = searchController
-//
+
         searchController.searchBar.delegate = self
         
         //ViewController title and navigation bar item configurations
@@ -72,10 +72,6 @@ class DiaryListController: UITableViewController {
                 detailViewController.item = item
             }
         }
-        //searchController.isActive = false
-        //searchController.searchBar.isHidden = true
-        
-        //tableView.tableHeaderView = nil
     }
     
     //TableView delegate methods to establish header view
@@ -93,20 +89,7 @@ class DiaryListController: UITableViewController {
 extension DiaryListController {
     func configureUI() {
         self.title = Date().formattedMmmDDYYYY()
-        
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(DiaryListController.showSearchBar))
-//        self.navigationItem.leftBarButtonItem?.isEnabled = true
     }
-    
-//    @objc func showSearchBar() {
-//        //Show the search bar when user selects the search symbol (navbar left item).
-//        //tableView.tableHeaderView = searchController.searchBar
-//        navigationItem.searchController = searchController
-//        searchController.dimsBackgroundDuringPresentation = false
-//        searchController.searchResultsUpdater = self
-//        definesPresentationContext = true
-//    }
-    
 }
 
 //MARK: - SearchBarController and SearchBar Delegate Methods:

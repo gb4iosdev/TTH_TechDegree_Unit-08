@@ -93,9 +93,7 @@ class DetailViewController: UIViewController {
         
         //Display Alert to user if required information is not provided, and return back to DetailViewController
         guard let titleText = titleTextField.text, !titleText.isEmpty else {
-            let alertController = UIAlertController(title: "Diary title cannot be empty", message: nil, preferredStyle: .alert)
-            alertController.addAction(.init(title: "OK", style: .default, handler: nil))
-            present(alertController, animated: true, completion: nil)
+            AlertManager().generateSimpleAlert(withTitle: "Diary title cannot be empty", message: "")
             return
         }
         

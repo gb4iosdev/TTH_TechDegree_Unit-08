@@ -6,11 +6,11 @@
 //  Copyright © 2019 Gavin Butler. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 class CoreDataStack {
-    
+
     lazy var managedObjectContext: NSManagedObjectContext = {
         let container = self.persistentContainer
         return container.viewContext
@@ -20,7 +20,12 @@ class CoreDataStack {
         let container = NSPersistentContainer (name: "DiaryList")
         container.loadPersistentStores() { storeDescription, error in
             if let error = error as NSError? {
-                fatalError("Error:  Unknown type: \(error), \(error.userInfo)")
+                
+                //Inform the user of the failure to load from persisent store, then terminate the app
+                DispatchQueue.main.async {
+                    AlertManager().generateSimpleAlert(withTitle: "Error", message: error.localizedDescription)
+                    fatalError("Error:  Unknown type: \(error), \(error.localizedDescription)")
+                }
             }
         }
         return container
@@ -29,14 +34,15 @@ class CoreDataStack {
 }
 
 extension NSManagedObjectContext {
+    
     func saveChanges() {
         if self.hasChanges {
             do {
                 try save()
             } catch {
-                fatalError("Error: \(error.localizedDescription)")
+                // Present a modal alert to advise that save was not succesful.
+                AlertManager().generateSimpleAlert(withTitle: "Error on save", message: error.localizedDescription)
             }
         }
     }
 }
-
