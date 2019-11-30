@@ -25,5 +25,13 @@ class ItemCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func configure(with item: Item) {
+        title.text = item.text
+        detail.text = item.detailedText
+        
+        if item.creationDateAsDate().dayNumber() != Date().dayNumber() {
+            dateLabel.text = item.creationDateAsDate().formattedMmmDDYYYY()
+        }
+    }
 }
