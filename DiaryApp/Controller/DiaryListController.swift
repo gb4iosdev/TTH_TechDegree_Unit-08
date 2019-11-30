@@ -13,7 +13,7 @@ import CoreData
 class DiaryListController: UITableViewController {
 
     //Set the context for CRUD operations – need to ensure this specific context is used by any other controllers wishing to retrieve or modify data
-    let managedObjectContext = CoreDataStack().managedObjectContext
+    let managedObjectContext = CoreDataStack.shared.managedObjectContext
     
     lazy var dataSource: DataSource = {
         return DataSource(tableView: self.tableView, context: self.managedObjectContext)
@@ -28,13 +28,19 @@ class DiaryListController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         //Set tableView datasource and self as search delegate
         tableView.dataSource = dataSource
+        dataSource.fetchedResultsController.delegate = self
+        
+        do {
+            try dataSource.fetchedResultsController.performFetch()
+        } catch {
+            presentAlert(with: "Error", message: error.localizedDescription)
+        }
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -64,11 +70,11 @@ class DiaryListController: UITableViewController {
         guard let detailViewController = segue.destination as? DetailViewController else { return }
         
         //Set context and item using selected tableView row (dependency injection)
-        detailViewController.context = self.managedObjectContext
+//        detailViewController.context = self.managedObjectContext
         
         if segue.identifier == "showDetail" {   //Need to set the item
             if let indexPath = tableView.indexPathForSelectedRow {
-                let item = dataSource.object(at: indexPath)
+                let item = dataSource.fetchedResultsController.object(at: indexPath)
                 detailViewController.item = item
             }
         }
@@ -108,7 +114,13 @@ extension DiaryListController: UISearchResultsUpdating, UISearchBarDelegate {
         }
         
         //Fetch data with the new filter, reload the tableView to update the UI
-        self.dataSource.fetchedResultsController.tryFetch()
+        
+        //Always use a do-catch in the view controller so you can present an alert when something went wrong.
+        do {
+            try self.dataSource.fetchedResultsController.performFetch()
+        } catch {
+            presentAlert(with: "Error", message: error.localizedDescription)
+        }
         
         tableView.reloadData()
     }
@@ -119,4 +131,31 @@ extension DiaryListController: UISearchResultsUpdating, UISearchBarDelegate {
         self.navigationItem.leftBarButtonItem?.isEnabled = true
     }
     
+}
+
+//MARK: - Fetched Results Controller Delegate:
+extension DiaryListController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            guard let newIndexPath = newIndexPath else { return }
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .move, .update:
+            guard let indexPath = indexPath else { return }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        //Get rid of the build warning by covering unknown enum cases
+        @unknown default: break
+        }
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
 }

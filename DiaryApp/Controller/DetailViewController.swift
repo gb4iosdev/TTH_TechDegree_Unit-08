@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     
     //Assigned in from DiaryListController
     var item: Item?
-    var context: NSManagedObjectContext!
+    var context = CoreDataStack.shared.managedObjectContext
     
     var addedImages: [UIImage] = [] //Capture added photos from the picker (for saving only if save is selected)
     var userLocation: Coordinate?   //Capture the user's location coordinate (for saving only if save is selected)
@@ -40,8 +40,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var miniMapView: MKMapView!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
-    
-    
     
     override func viewDidLoad() {
         
@@ -93,13 +91,18 @@ class DetailViewController: UIViewController {
         
         //Display Alert to user if required information is not provided, and return back to DetailViewController
         guard let titleText = titleTextField.text, !titleText.isEmpty else {
-            AlertManager().generateSimpleAlert(withTitle: "Diary title cannot be empty", message: "")
+            //In a view controller you shouldn't present the alert in a different window. Just create an alert and then present it on the view controller.
+            presentAlert(with: "Diary title cannot be empty", message: nil)
+            
+//            AlertManager().generateSimpleAlert(withTitle: "Diary title cannot be empty", message: "")
             return
         }
         
         if self.item == nil {  //Need to create a new item
             print("self.context == nil: \(self.context == nil)")
-            let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.context) as! Item
+            
+            //Just using the convenience init for creating new entities here. No more string enitiy names. 🎉
+            let item = Item(context: context)
             self.item = item
         }
         

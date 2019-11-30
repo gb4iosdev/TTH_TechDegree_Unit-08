@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78A723E423924257008A7D30 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A723E323924256008A7D30 /* UIViewController+UIAlertController.swift */; };
 		86272624237CB653000F55A5 /* PhotoCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86272623237CB653000F55A5 /* PhotoCollectionController.swift */; };
 		86272626237CBACC000F55A5 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86272625237CBACC000F55A5 /* PhotoCell.swift */; };
 		864F9688238176DA00DE6309 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F9686238176DA00DE6309 /* Location+CoreDataClass.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78A723E323924256008A7D30 /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
 		86272623237CB653000F55A5 /* PhotoCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionController.swift; sourceTree = "<group>"; };
 		86272625237CBACC000F55A5 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		864F9686238176DA00DE6309 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -185,6 +187,7 @@
 		869B52F623774DBE0092201A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				78A723E323924256008A7D30 /* UIViewController+UIAlertController.swift */,
 				869B52F723774DD10092201A /* Date.swift */,
 				86FF682A23855C32002C393D /* MKMapView.swift */,
 			);
@@ -280,6 +283,7 @@
 				86B7FF432367ACE600276EB9 /* Item+CoreDataProperties.swift in Sources */,
 				86FF682B23855C32002C393D /* MKMapView.swift in Sources */,
 				8689C70E2380764F00D12C99 /* Coordinate.swift in Sources */,
+				78A723E423924257008A7D30 /* UIViewController+UIAlertController.swift in Sources */,
 				86B59D4A2386201F0002B517 /* LocationSaverDelegate.swift in Sources */,
 				8686E4ED237F434E0068DB6D /* Photo+CoreDataProperties.swift in Sources */,
 				866140512366F82B00BACF35 /* DiaryList.xcdatamodeld in Sources */,
