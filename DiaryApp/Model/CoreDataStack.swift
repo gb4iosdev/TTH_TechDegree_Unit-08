@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-//A little hint: Marking all classes you won't subclass (even the AppDelegate) as "final" makes your code safer (no one else will be able to subclass it) and Swift will perform some performance enhancements.
+//Marking all classes you won't subclass (even the AppDelegate) as "final" makes your code safer (no one else will be able to subclass it) and Swift will perform some performance enhancements.
 final class CoreDataStack {
     private init() {}
     
@@ -34,7 +34,6 @@ final class CoreDataStack {
                     //Call the presentAlert method from your UIWindow extension
                     window.presentAlert(with: "Error", message: error.localizedDescription)
                     
-//                    AlertManager().generateSimpleAlert(withTitle: "Error", message: error.localizedDescription)
                     fatalError("Error:  Unknown type: \(error), \(error.localizedDescription)")
                 }
             }
@@ -52,8 +51,6 @@ extension NSManagedObjectContext {
                 try save()
             } catch {
                 // Present a modal alert to advise that save was not succesful.
-//                AlertManager().generateSimpleAlert(withTitle: "Error on save", message: error.localizedDescription)
-                
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let window = appDelegate.window else { return }
                 
                 window.presentAlert(with: "Error", message: error.localizedDescription)

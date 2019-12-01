@@ -32,7 +32,7 @@ class DiaryListController: UITableViewController {
         
         super.viewDidLoad()
         
-        //Set tableView datasource and self as search delegate
+        //Set tableView datasource and self as fetchedResultsController delegate
         tableView.dataSource = dataSource
         dataSource.fetchedResultsController.delegate = self
         
@@ -50,6 +50,7 @@ class DiaryListController: UITableViewController {
         definesPresentationContext = true
         navigationItem.searchController = searchController
 
+        //Set self as search delegate
         searchController.searchBar.delegate = self
         
         //ViewController title and navigation bar item configurations
