@@ -11,3 +11,4 @@ Persistence with Core Data, Fetched Results Controller, Map Kit & Geolocation, I
 
 ![](./ScreenShots/TD_P8_01.png)![](./ScreenShots/TD_P8_02.png)
 ![](./ScreenShots/TD_P8_03.png)![](./ScreenShots/TD_P8_04.png)
+![](./ScreenShots/TD_P8_05.png)
