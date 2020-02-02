@@ -46,6 +46,12 @@ class DetailViewController: UIViewController {
         //Hide the delete button if we are dealing with the entry of a new Item
         if item == nil { self.deleteButton.isHidden = true }
         
+        //Set textField delegate
+        titleTextField.delegate = self
+        
+        //Set the textView text colour
+        detailTextView.textColor = .darkGray
+        
         //Load the item if it exists
         if let item = item {
             titleTextField.text = item.text
@@ -138,6 +144,19 @@ class DetailViewController: UIViewController {
             context.saveChanges()
             navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @IBAction func textStackViewTapped(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+}
+
+//MARK: - Text Field Delegates
+extension DetailViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
 

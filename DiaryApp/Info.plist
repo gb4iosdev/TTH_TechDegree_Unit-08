@@ -43,5 +43,7 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your location data to show your location on the map</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to access your camer and photos</string>
 </dict>
 </plist>
